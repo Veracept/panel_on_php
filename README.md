@@ -22,7 +22,9 @@ $cfg['Servers'][$i]['extension'] = 'mysqli';<br>
 $cfg['Servers'][$i]['AllowNoPassword'] = false;<br>
 $cfg['Lang'] = '';<br>
 <br>
-7) Далее заходите на localhost/phpmyadmin/index.php(вводя пароль для пользователя root) и создаете две таблицы со значениями со скринов:<br>
+7) Далее заходите на localhost/phpmyadmin/index.php(вводя пароль для пользователя root) и создаете базу данных base:<br>
+<br>
+8) Далее в этой бд создаете две таблицы со значениями со скринов:<br>
 <br>
 Таблица moderators:
 <img src="https://media.discordapp.net/attachments/949257404464390154/1219016400711192687/Screenshot_8.png?ex=6609c47e&is=65f74f7e&hm=5e1023e7609de38d52c868bfcc767b412f189a5d4f0e238fcead08824e383138&=&format=webp&quality=lossless&width=1440&height=633" alt="Таблица moderators"><br>
