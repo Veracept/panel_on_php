@@ -9,7 +9,7 @@
 <br>
 3)Найдите в место скачивания xampp и в папке htdocs создайте папку moder<br>
 <br>
-4)В эту папку скопируйте данный репозиторий с помощью команды которую надо ввести в терминал <i>git clone https://github.com/Veracept/panel_on_php</i>i><br>
+4)В эту папку скопируйте данный репозиторий с помощью команды которую надо ввести в терминал <i>git clone https://github.com/Veracept/panel_on_php</i><br>
 <br>
 5)Зайдите на localhost/phpmyadmin/index.php -> Учетные записи -> там где имя хоста localhost кнопка Редактировать привилегии -> Change Password -> Введите пароль password<br>
 <br>
