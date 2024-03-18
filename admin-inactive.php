@@ -15,7 +15,20 @@ if ($conn->connect_error) {
 }
 
 // Запрос данных о модераторах с информацией о неактивности
-$sql = "SELECT id, nickname, IFNULL(inactive, false) AS inactive FROM moderators";
+$sql = "SELECT id, nickname, vk, level, notes, IFNULL(inactive, false) AS inactive,
+            CASE 
+                WHEN level = 'Тех.Админ Discord' THEN 1
+                WHEN level = 'Главный Модератор' THEN 2
+                WHEN level = 'Зам.Главного Модератора' THEN 3
+                WHEN level = 'Куратор Модерации' THEN 4
+                WHEN level = 'Специальный Модератор' THEN 5
+                WHEN level = 'Модератор 3 lvl' THEN 6
+                WHEN level = 'Модератор 2 lvl' THEN 7
+                WHEN level = 'Модератор 1 lvl' THEN 8
+                ELSE 9
+            END AS level_order
+        FROM moderators
+        ORDER BY level_order ASC";
 $result = $conn->query($sql);
 ?>
 
@@ -80,63 +93,60 @@ $result = $conn->query($sql);
 <table  class="table table-striped custom-table">
     <thead>
         <tr>
-            <th scope="col">№</th>
-            <th scope="col">Nickname</th>
-            <th scope="col">Неактивен</th>
-            <th scope="col">Действие</th>
+            <th scope="col"> № </th>
+            <th>Nickname Модератора</th>
+            <th>Уровень</th>
+            <th>Неактив</th>
+            <th>Действие</th>
         </tr>
     </thead>
     <tbody>
         <?php
+        $count = 1;
+
         if ($result->num_rows > 0) {
-            $count = 1;
             // Вывод данных о модераторах в виде таблицы
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $count++ . "</td>";
-                echo "<td>" . $row['nickname'] . "</td>";
-                echo "<td>" . ($row['inactive'] ? 'Да' : 'Нет') . "</td>";
+                echo "<td>" . $count++ . '.' . "</td>";
+                echo "<td><a href='" . $row['vk'] . "' target='_blank'>" . $row['nickname'] . "</a></td>";
+                echo "<td>" . $row['level'] . "<small class='d-block'>" . $row['notes'] . "</small></td>";
+                echo "<td>" . ($row['inactive'] == 1 ? 'True' : 'False') . "</td>";
                 echo "<td>";
-                if ($row['inactive']) {
+                if ($row['inactive'] == 1) {
                     echo "<form method='post'>";
                     echo "<input type='hidden' name='moderator_id' value='" . $row['id'] . "'>";
-                    echo "<input type='submit' name='cancel_inactive' value='Отменить неактив'>";
+                    echo "<input type='submit' name='cancel_inactive' value='Закончить неактив'>";
                     echo "</form>";
                 }
                 echo "</td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='4'>Нет данных</td></tr>";
+            echo "<tr><td colspan='3'>Нет данных</td></tr>";
         }
         ?>
     </tbody>
 </table>
 
 <?php
-// Обработка действия кнопки "Отменить неактив"
+// Обработка действия кнопки "Закончить неактив"
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cancel_inactive'])) {
-    $id = $_POST['moderator_id'];
+    // Проверяем, существует ли переменная $_POST['moderator_id']
+    if(isset($_POST['moderator_id'])) {
+        $id = $_POST['moderator_id'];
 
-    // Получаем текущее значение неактивности модератора
-    $sql_get_inactive = "SELECT inactive FROM moderators WHERE id = $id";
-    $result_inactive = $conn->query($sql_get_inactive);
-    if ($result_inactive->num_rows > 0) {
-        $row_inactive = $result_inactive->fetch_assoc();
-        $current_inactive = $row_inactive['inactive'];
-
-        // Обновляем значение неактивности на противоположное
-        $new_inactive = $current_inactive ? 0 : 1;
-
-        // Обновляем запись в таблице moderators, устанавливая значение поля inactive в новое значение
-        $sql_update_inactive = "UPDATE moderators SET inactive = $new_inactive WHERE id = $id";
+        // Обновляем значение неактивности на 0
+        $sql_update_inactive = "UPDATE moderators SET inactive = 0 WHERE id = $id";
         if ($conn->query($sql_update_inactive) === TRUE) {
-            echo "<script>console.log('Статус неактивности обновлен.');</script>";
+            echo "<script>alert('Статус неактивности обновлен.');</script>";
+            // Перезагрузка страницы
+            echo "<script>window.location.href = 'admin-inactive.php';</script>";
         } else {
             echo "Ошибка при обновлении статуса неактивности: " . $conn->error;
         }
     } else {
-        echo "Ошибка: Модератор с указанным ID не найден.";
+        echo "Ошибка: Параметр 'moderator_id' не передан.";
     }
 }
 ?>
@@ -147,4 +157,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cancel_inactive'])) {
 <?php
 // Закрываем соединение с базой данных
 $conn->close();
-?>
