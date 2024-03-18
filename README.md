@@ -7,7 +7,7 @@
 <br>
 2)Запустите в нем откладку MySQL и Apache<br>
 <br>
-3)Найдите в место скачивания xampp и в папке htdocs создайте папку moder<br>
+3)Зайдите в место скачивания xampp и в папке htdocs создайте папку moder<br>
 <br>
 4)В эту папку скопируйте данный репозиторий с помощью команды которую надо ввести в терминал <i>git clone https://github.com/Veracept/panel_on_php</i><br>
 <br>
@@ -30,4 +30,4 @@ $cfg['Lang'] = '';<br>
 <img src="https://media.discordapp.net/attachments/949257404464390154/1219016400711192687/Screenshot_8.png?ex=6609c47e&is=65f74f7e&hm=5e1023e7609de38d52c868bfcc767b412f189a5d4f0e238fcead08824e383138&=&format=webp&quality=lossless&width=1440&height=633" alt="Таблица moderators"><br>
 Таблица users:<br>
 <img src="https://media.discordapp.net/attachments/949257404464390154/1219016400337768458/Screenshot_9.png?ex=6609c47e&is=65f74f7e&hm=9e95c6ee29c0469c53569c923ec005694bc9b66bad0b8736ce4dfe8d7267da8d&=&format=webp&quality=lossless&width=1440&height=261" alt="Таблица users"><br>
-8)Далее открываем localhost/moder и все должно работать.
+9)Далее открываем localhost/moder и все должно работать.
