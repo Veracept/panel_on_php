@@ -22,7 +22,7 @@ $cfg['Servers'][$i]['extension'] = 'mysqli';<br>
 $cfg['Servers'][$i]['AllowNoPassword'] = false;<br>
 $cfg['Lang'] = '';<br>
 <br>
-7) Далее заходите на localhost/phpmyadmin/index.php(вводя пароль для пользователя root) и создаете базу данных base:<br>
+7) Далее заходите на localhost/phpmyadmin/index.php(вводя пароль для пользователя root) и создаете базу данных base<br>
 <br>
 8) Далее в этой бд создаете две таблицы со значениями со скринов:<br>
 <br>
