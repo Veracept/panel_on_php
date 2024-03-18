@@ -70,6 +70,7 @@ checkAuthorizedUserId($allowedIds);
       
       <th scope="col"> № </th>
       <th scope="col">Nickname Модератора</th>
+      <th scope="col">Уровень</th>
       <th scope="col">Действия</th>
   <tbody>
 
@@ -79,7 +80,20 @@ checkAuthorizedUserId($allowedIds);
 
 
             // Выбираем всех модераторов из базы данных
-            $sql = "SELECT id, nickname FROM moderators";
+            $sql = "SELECT id, nickname, level, notes,
+            CASE 
+                WHEN level = 'Тех.Админ Discord' THEN 1
+                WHEN level = 'Главный Модератор' THEN 2
+                WHEN level = 'Зам.Главного Модератора' THEN 3
+                WHEN level = 'Куратор Модерации' THEN 4
+                WHEN level = 'Специальный Модератор' THEN 5
+                WHEN level = 'Модератор 3 lvl' THEN 6
+                WHEN level = 'Модератор 2 lvl' THEN 7
+                WHEN level = 'Модератор 1 lvl' THEN 8
+                ELSE 9
+            END AS level_order
+        FROM moderators
+        ORDER BY level_order ASC";
             $result = $conn->query($sql);
             $count = 1;
 
@@ -87,8 +101,9 @@ checkAuthorizedUserId($allowedIds);
                 // Выводим данные в таблицу
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $count++ . "</td>";
+                    echo "<td>" . $count++ . '.' . "</td>";
                     echo "<td>" . $row['nickname'] . "</td>";
+                    echo "<td>" . $row['level'] . "<small class='d-block'>" . $row['notes'] . "</small></td>";
                     echo "<td>";
                     // Ссылка на страницу редактирования модератора
                     echo "<a href='updatemoder.php?id=" . $row['id'] . "'>Редактировать</a>";
