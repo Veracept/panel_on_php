@@ -92,10 +92,9 @@ $user = currentUser();
                 <p class="lead text-muted">Выбери опцию, которая тебе нужна</p>
                 <p>
                   <a href="admin-table.php" class="btn btn-primary my-2">Таблица Модерации [Admin]</a>
+                  <a href="admin-inactive.php" class="btn btn-secondary my-2">Таблица Неактивов[Admin]</a>
                   <a href="register.php" class="btn btn-secondary my-2">Регестрация Модератора[Admin/User]</a>
                   <a href="addmoder.php" class="btn btn-secondary my-2">Добавить Модератора[Admin]</a>
-                  <a href="https://rodina-nexus.com/threads/1619/" class="btn btn-secondary my-2">Обменять Модер-Марки</a>
-                  <a href="/moder/profile.php" class="btn btn-secondary my-2">Профиль</a>
                 </p>
               </div>
             </div>
