@@ -197,7 +197,19 @@ if(isset($_GET['id'])) {
         <input type="text" id="nickname" name="vk" value="<?php echo $row['vk']; ?>"><br><br>
         
         <label for="level">Уровень:</label>
-        <input type="text" id="level" name="level" value="<?php echo $row['level']; ?>"><br><br>
+        <select id="level" name="level">
+            <option value="Тех.Админ Discord">Тех.Админ Discord</option>
+            <option value="Главный Модератор">Главный Модератор</option>
+            <option value="Зам.Главного Модератора">Зам.Главного Модератора</option>
+            <option value="Куратор Модерации">Куратор Модерации</option>
+            <option value="Специальный Модератор">Специальный Модератор</option>
+            <option value="Модератор 3 lvl">Модератор 3 lvl</option>
+            <option value="Модератор 2 lvl">Модератор 2 lvl</option>
+            <option value="Модератор 1 lvl">Модератор 1 lvl</option>
+        </select><br><br>
+
+        <label for="level">Доп. Инфа(заметки):</label>
+        <input type="text" id="level" name="notes"><br><br>
         
         <label for="prefix">Префикс:</label>
         <input type="text" id="prefix" name="prefix" value="<?php echo $row['prefix']; ?>"><br><br>
