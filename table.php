@@ -135,7 +135,7 @@ checkAuth();
                 // Вывод данных в таблицу
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $count++ . "</td>"; // id столбец должен быть в вашей таблице базы данных
+                    echo "<td>" . $count++ . '.' . "</td>";
                     echo "<td><a href='" . $row['vk'] . "' target='_blank'>" . $row['nickname'] . "</a></td>";
                     echo "<td>" . $row['level'] . "<small class='d-block'>" . $row['notes'] . "</small></td>";
                     echo "<td>" . $row['prefix'] . "</td>";
