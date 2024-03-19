@@ -125,6 +125,9 @@ checkAuthorizedUserId($allowedIds);
         <label for="vk">ВК:</label>
         <input type="text" id="vk" name="vk"><br><br>
 
+        <label for="vk">Discord ID:</label>
+        <input type="text" id="discord_id" name="vk"><br><br>
+
         <label for="level">Уровень:</label>
         <select id="level" name="level">
             <option value="Тех.Админ Discord">Тех.Админ Discord</option>
@@ -146,10 +149,10 @@ checkAuthorizedUserId($allowedIds);
         <label for="forum">Форум:</label>
         <input type="text" id="forum" name="forum"><br><br>
 
-        <label for="days_level">Кол-во дней (уровень):</label>
-        <input type="text" id="days_level" name="days_level"><br><br>
+        <!-- <label for="days_level">Дата постановления:</label>
+        <input type="text" id="days_level" name="days_level"><br><br> -->
 
-        <label for="days_ever">Кол-во дней (вообщем):</label>
+        <label for="days_ever">Дата постановления:</label>
         <input type="text" id="days_ever" name="days_ever"><br><br>
 
         <label for="reprimands">Строгие:</label>
