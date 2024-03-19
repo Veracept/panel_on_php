@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 19 2024 г., 16:46
+-- Время создания: Мар 19 2024 г., 17:48
 -- Версия сервера: 10.4.32-MariaDB
 -- Версия PHP: 8.2.12
 
@@ -51,9 +51,10 @@ CREATE TABLE `moderators` (
 --
 
 INSERT INTO `moderators` (`id`, `nickname`, `vk`, `discord_id`, `level`, `notes`, `prefix`, `forum`, `days_level`, `days_ever`, `reprimands`, `warns`, `date_lvl_up`, `number_of_actions`, `moder_marks`, `inactive`) VALUES
-(7, 'Jon_Ramirez', 'https://vk.com/veracept', '869533477345849365', 'Зам.Главного Модератора', '♕', '//Ramirez', 'https://rodina-nexus.com/members/7/', '400', '600', '5', '5', '2024-03-14', '1018', '0', 0),
-(10, 'Pavel_Cherenkov', 'https://vk.com/lapa_paha', '528841007924772865', 'Тех.Админ Discord', '♕', '//Черенков', 'https://rodina-nexus.com/members/1/', '400', '900', '0', '1', '2024-03-15', '15', '0', 0),
-(11, 'Yuri_Green', 'https://vk.com/balaboy', '922206772826107915', 'Главный Модератор', '♕', '//Green', 'https://rodina-nexus.com/members/16/', '400', '200', '5', '5', '2024-03-14', '10', '0', NULL);
+(7, 'Jon_Ramirez', 'https://vk.com/veracept', '869533477345849365', 'Зам.Главного Модератора', '♕', '//Ramirez', 'https://rodina-nexus.com/members/7/', '400', '17.03.2024', '5', '5', '2024-03-14', '1018', '0', 0),
+(10, 'Pavel_Cherenkov', 'https://vk.com/lapa_paha', '528841007924772865', 'Тех.Админ Discord', '♕', '//Черенков', 'https://rodina-nexus.com/members/1/', '', '19.03.2024', '0', '1', '2024-03-15', '15', '0', 0),
+(11, 'Yuri_Green', 'https://vk.com/balaboy', '922206772826107915', 'Главный Модератор', '♕', '//Green', 'https://rodina-nexus.com/members/16/', '400', '19.03.2024', '5', '5', '2024-03-14', '10', '0', NULL),
+(12, 'Vasya_White', '536108487948632064', '536108487948632064', 'Куратор Модерации', '♕', '//Вайт', 'https://rodina-nexus.com/members/7/', NULL, '19.03.2024', '5', '0', '2024-03-12', '1018', '0', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `moderators`
 --
 ALTER TABLE `moderators`
-  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
