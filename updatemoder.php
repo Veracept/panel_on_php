@@ -28,11 +28,12 @@ if(isset($_GET['id'])) {
             // Получаем новые данные из формы
             $nickname = $_POST['nickname'];
             $vk = $_POST['vk'];
+            $discord_id = $_POST['discord_id'];
             $level = $_POST['level'];
             $notes = $_POST['notes'];
             $prefix = $_POST['prefix'];
             $forum = $_POST['forum'];
-            $days_level = $_POST['days_level'];
+            // $days_level = $_POST['days_level'];
             $days_ever = $_POST['days_ever'];
             $reprimands = $_POST['reprimands'];
             $warns = $_POST['warns'];
@@ -44,11 +45,11 @@ if(isset($_GET['id'])) {
             $sql_update = "UPDATE moderators SET 
                 nickname = '$nickname', 
                 vk = '$vk', 
+                discord_id = '$discord_id',
                 level = '$level', 
                 notes = '$notes', 
                 prefix = '$prefix', 
                 forum = '$forum', 
-                days_level = '$days_level', 
                 days_ever = '$days_ever', 
                 reprimands = '$reprimands', 
                 warns = '$warns', 
@@ -153,20 +154,20 @@ if(isset($_GET['id'])) {
 }
 </style>
 
-    <header>
+<header>
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4 class="text-white">Панель Модерации</h4>
-              <p class="text-muted">Панелья для легкого взаимодейсвия с модерацией, заменяет рутинные таблицы, легче в использовании. Разработано Keeper Inc.</p>
+              <p class="text-muted">Панель для легкого взаимодейсвия с модерацией, заменяет рутинные таблицы, легче в использовании. Разработано <a href = "https://veracept.pro" target="_blank">Veracept'ом</a>.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Полезные ссылки</h4>
               <ul class="list-unstyled">
                   <li><a href="https://rodina-nexus.com" class="text-white">Форум</a></li>
-                  <li><a href="login.html" class="text-white">Войти</a></li>
-                  <li><a href="https://vk.com/club219891888" class="text-white">Группа ВК</a></li>
+                  <li><a href="/moder/login.php" class="text-white">Войти</a></li>
+                  <li><a href="https://vk.com/modersvo" class="text-white">Группа ВК</a></li>
               </ul>
             </div>
           </div>
@@ -174,7 +175,7 @@ if(isset($_GET['id'])) {
       </div>
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-          <a href="index.html" class="navbar-brand d-flex align-items-center">
+          <a href="/moder/index_if_login.php" class="navbar-brand d-flex align-items-center">
               <img src="https://rodina-nexus.com/data/assets/logo/logo.png" srcset="" alt="Rodina Nexus" width="225" height="">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -193,8 +194,11 @@ if(isset($_GET['id'])) {
         <label for="nickname">Nickname Модератора:</label>
         <input type="text" id="nickname" name="nickname" value="<?php echo $row['nickname']; ?>"><br><br>
 
-        <label for="nickname">VK Модератора:</label>
-        <input type="text" id="nickname" name="vk" value="<?php echo $row['vk']; ?>"><br><br>
+        <label for="vk">VK Модератора:</label>
+        <input type="text" id="vk" name="vk" value="<?php echo $row['vk']; ?>"><br><br>
+
+        <label for="discord_id">Discord ID:</label>
+        <input type="text" id="discord_id" name="discord_id" value="<?php echo $row['discord_id']; ?>"><br><br>
         
         <label for="level">Уровень:</label>
         <select id="level" name="level">
@@ -208,8 +212,8 @@ if(isset($_GET['id'])) {
             <option value="Модератор 1 lvl">Модератор 1 lvl</option>
         </select><br><br>
 
-        <label for="level">Доп. Инфа(заметки):</label>
-        <input type="text" id="level" name="notes"><br><br>
+        <label for="notes">Доп. Инфа(заметки):</label>
+        <input type="text" id="notes" name="notes" value="<?php echo $row['notes']; ?>"><br><br>
         
         <label for="prefix">Префикс:</label>
         <input type="text" id="prefix" name="prefix" value="<?php echo $row['prefix']; ?>"><br><br>
@@ -217,10 +221,10 @@ if(isset($_GET['id'])) {
         <label for="forum">ФА:</label>
         <input type="text" id="forum" name="forum" value="<?php echo $row['forum']; ?>"><br><br>
         
-        <label for="days_level">Кол-во дней(Уровень):</label>
-        <input type="text" id="days_level" name="days_level" value="<?php echo $row['days_level']; ?>"><br><br>
+        <!-- <label for="days_level">Дата постановления:</label>
+        <input type="text" id="days_level" name="days_level" value="<?php echo $row['days_level']; ?>"><br><br> -->
         
-        <label for="days_ever">Кол-во дней(Вообще):</label>
+        <label for="days_ever">Дата постановления:</label>
         <input type="text" id="days_ever" name="days_ever" value="<?php echo $row['days_ever']; ?>"><br><br>
         
         <label for="reprimands">Строгие:</label>
