@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
 
-checkGuest();
+checkAuth();
+checkAuthorizedUserId($allowedIds);
 ?>
 
 
@@ -78,7 +79,7 @@ checkGuest();
             type="text"
             id="name"
             name="name"
-            placeholder="Ваш NickName"
+            placeholder="NickName модератора"
             value="<?php echo old('name') ?>"
             <?php echo validationErrorAttr('name'); ?>
         >
@@ -97,7 +98,7 @@ checkGuest();
             type="text"
             id="email"
             name="email"
-            placeholder="ваш email"
+            placeholder="email модератора"
             value="<?php echo old('email') ?>"
             <?php echo validationErrorAttr('email'); ?>
         >
@@ -157,12 +158,12 @@ checkGuest();
         type="submit"
         id="submit"
         
-    >Зарегестрироваться</button>
+    >Зарегестрировать</button>
 </form>
 </div>
     </div>
 
-<p style="text-align: center; color: white;">Уже есть аккуант?<a href="/moder/login.php"> Войти</a></p>
+<!-- <p style="text-align: center; color: white;">Уже есть аккуант?<a href="/moder/login.php"> Войти</a></p> -->
 
 <script src="js/main.js"></script>
 </body>
