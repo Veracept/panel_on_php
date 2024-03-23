@@ -46,7 +46,7 @@ checkAuth();
         border-radius: 10px;
         text-align: center;
         margin: 0 auto;
-        margin-top: 10px;
+        margin-top: 50px;
         margin-bottom: 10px;
         border: 2px solid grey;
         box-shadow: 4px 4px 20px black;
@@ -155,6 +155,8 @@ echo "<br>";
     <p id="links"></p>
 
 
+</form>
+
 <div>
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -174,7 +176,6 @@ echo "<br>";
           <p>Keeper Inc 2021 - 2024 </p>
         </div>
 
-  
-</form>
+
 </body>
 </html>
