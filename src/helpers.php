@@ -115,6 +115,7 @@ function currentUser(): array|false
     return $stmt->fetch(\PDO::FETCH_ASSOC);
 }
 
+
 function logout(): void
 {
     unset($_SESSION['user']['id']);
@@ -153,4 +154,20 @@ function checkAuthorizedUserId($allowedIds): void
         // Если ID пользователя не разрешен, перенаправляем его на страницу запрещения доступа
         redirect('/moder/404.php');
     }
+}
+
+function currentModerator(): array|false
+{
+    $pdo = getPDO();
+
+    if (!isset($_SESSION['user']['name'])) {
+        return false;
+    }
+
+    $username = $_SESSION['user']['name'] ?? null;
+
+    $query = "SELECT * FROM moderators WHERE nickname = :username";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['username' => $username]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
