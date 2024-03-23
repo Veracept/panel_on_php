@@ -121,7 +121,12 @@ checkAuthorizedUserId($allowedIds);
     </table>
 <br>
 
-<div>
+</div>
+          </div>
+          </div>
+
+
+          <div>
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
         <defs>
@@ -139,6 +144,12 @@ checkAuthorizedUserId($allowedIds);
         <div class="contentt flex">
           <p>Keeper Inc 2021 - 2024 </p>
         </div>
+
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
 
     
 </body>
