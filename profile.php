@@ -1,9 +1,14 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
 
+// Проверяем, авторизован ли пользователь
 checkAuth();
 
-$user = currentUser();
+// Получаем данные текущего пользователя из обеих таблиц
+$user = currentModerator();
+
+$user2 = currentUser();
+
 ?>
 
 <!DOCTYPE html>
@@ -22,45 +27,22 @@ $user = currentUser();
     
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
-    <title>Профиль</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+                      
+    <title>Профиль модератора <?php echo $user['nickname']; ?></title>
+    <script>
+        console.log(<?php echo json_encode($_SESSION); ?>);
+        console.log("Привет, <?php echo $user['nickname']; ?>!");
+        console.log("Уровень: <?php echo $user['level']; ?>");
+        console.log("Строгие: <?php echo $user['reprimands']; ?>");
+        console.log("Устные: <?php echo $user['warns']; ?>");
+        console.log("Префикс: <?php echo $user['prefix']; ?>");
+        console.log("Дата постановления: <?php echo $user['days_ever']; ?>");
+        console.log("Дата повышения: <?php echo date("Y-m-d", strtotime($user['date_lvl_up'])); ?>");
+        console.log("Кол-во действий: <?php echo $user['number_of_actions']; ?>");
+        console.log("Модер-Марки: <?php echo $user['moder_marks']; ?>");
+    </script>
 </head>
-
-
-<style>
-
-.card {
-    box-shadow: 0.0145rem 0.029rem 0.174rem rgba(0, 0, 0, 0.01698),
-    0.0335rem 0.067rem 0.402rem rgba(0, 0, 0, 0.024),
-    0.0625rem 0.125rem 0.75rem rgba(0, 0, 0, 0.03),
-    0.1125rem 0.225rem 1.35rem rgba(0, 0, 0, 0.036),
-    0.2085rem 0.417rem 2.502rem rgba(0, 0, 0, 0.04302),
-    0.5rem 1rem 6rem rgba(0, 0, 0, 0.06),
-    0 0 0 0.0625rem rgba(0, 0, 0, 0.015);
-    background: #141e26;
-    border-radius: 0.25rem;
-    padding: 40px;
-    margin-top: 200px;
-}
-
-.avatar {
-    width: 300px;
-    height: 300px;
-    display: block;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 20px;
-    padding: 100px;
-}
-
-
-</style>
-
 <body>
 <header>
       <div class="collapse bg-dark" id="navbarHeader">
@@ -75,7 +57,7 @@ $user = currentUser();
               <ul class="list-unstyled">
                   <li><a href="https://rodina-nexus.com" class="text-white">Форум</a></li>
                   <li><a href="/moder/login.php" class="text-white">Войти</a></li>
-                  <li><a href="https://vk.com/modersvo" class="text-white">Группа ВК</a></li>
+                  <li><a href="https://vk.com/tattoo_odi" class="text-white">Группа ВК</a></li>
               </ul>
             </div>
           </div>
@@ -83,7 +65,7 @@ $user = currentUser();
       </div>
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-          <a href="/moder/index_if_login.php" class="navbar-brand d-flex align-items-center">
+          <a href="/moder/index.php" class="navbar-brand d-flex align-items-center">
               <img src="https://rodina-nexus.com/data/assets/logo/logo.png" srcset="" alt="Rodina Nexus" width="225" height="">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,42 +74,54 @@ $user = currentUser();
         </div>
       </div>
     </header>
-     
 
-<div class="headerr">
-<div class="inner-header flex">
-<div class="card home">
-    <img style="width: 300px; height: 300px; display: block; object-fit: cover; border-radius: 50%;"
-        class="avatar"
-        src="<?php echo $user['avatar'] ?>"
-        alt="<?php echo $user['name'] ?>"
-    >
-    <h1>Привет, <?php echo $user['name'] ?>!</h1>
-    <form action="src/actions/logout.php" method="post">
-        <button role="button">Выйти из аккаунта</button>
-    </form>
+    <?php if ($user): ?>
+
+      <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src="<?php echo $user2['avatar'] ?>" alt="<?php echo $user2['name'] ?>">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Привет, <?php echo $user['nickname']; ?>!</h5>
+                    <p class="card-text">Восточный Округ</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Ваш Профиль</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Уровень:</strong> <?php echo $user['level']; ?></li>
+                        <li class="list-group-item"><strong>Строгие:</strong> <?php echo $user['reprimands']; ?></li>
+                        <li class="list-group-item"><strong>Устные:</strong> <?php echo $user['warns']; ?></li>
+                        <li class="list-group-item"><strong>Префикс:</strong> <?php echo $user['prefix']; ?></li>
+                        <li class="list-group-item"><strong>Дата постановления:</strong> <?php echo $user['days_ever']; ?></li>
+                        <li class="list-group-item"><strong>Дата повышения:</strong> <?php echo date("Y-m-d", strtotime($user['date_lvl_up'])); ?></li>
+                        <li class="list-group-item"><strong>Кол-во действий:</strong> <?php echo $user['number_of_actions']; ?></li>
+                        <li class="list-group-item"><strong>Модер-Марки:</strong> <?php echo $user['moder_marks']; ?></li>
+                    </ul>
+                    <div class="text-center mt-3">
+                        <form action="src/actions/logout.php" method="post">
+                            <button type="submit" class="btn btn-primary">Выйти из Аккаунта</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-        </div>
-        <div style="margin-top: 200px;">
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-        </g>
-        </svg>
-        </div>
-        </div>
-        <div class="contentt flex">
-          <p>Keeper Inc 2021 - 2024 </p>
-        </div>
 
 
+
+        <?php else: ?>
+            <p>Пользователь не найден.</p>
+            <form action="src/actions/logout.php" method="post">
+                            <button type="submit" class="btn btn-primary">Выйти из Аккаунта</button>
+                        </form>
+        <?php endif; ?>
+    </div>
 
 </body>
 </html>
